@@ -1,2 +1,27 @@
-# tips
-Un dépôt collaboratif regroupant des astuces pratiques, raccourcis, snippets et bonnes pratiques pour les développeurs, organisés par langage et par technologie. Tu trouveras ici des exemples clairs et concis pour améliorer ton quotidien de codeur
+# Astuces et Bonnes pratiques
+
+Nous postons régulièrements des astuces et des bonne pratique sur Laravel et les technologies autours de Laravel.
+Vous pouvez nous retrouver sur notre site officiel [Larafrique](https://larafrique.com) ou sur les réseaux sociaux, [X](https://x.com/larafrique), [Facebook](https://web.facebook.com/profile.php?id=61579963408240) et [Youtube](https://www.youtube.com/@larafrique)
+
+## Accès rapide
+
+#### [Laravel](./Laravel)
+
+- [Bonnes pratiques](./Laravel/Bonne%20partique.md)
+- [Eloquent](./Laravel/Eloquent.md)
+- [Collections](./Laravel/Collections.md)
+- [Helpers](./Laravel/Helpers.md)
+- [Blade](./Laravel/Blade.md)
+- [Tutoriels](./Laravel/Tutoriels.md)
+- [Commandes](./Laravel/Commandes.md)
+___
+
+#### [PHP](./PHP)
+
+- [Astuces](./PHP/Astuces.md)
+___
+
+
+#### [CSS](./CSS)
+- [Astuces](./CSS/Astuces.md)
+___
