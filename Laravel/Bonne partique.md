@@ -90,7 +90,7 @@ ___
 
 Laravel retrouve les 'factories' par défaut, mais si vous les placez dans un sous-dossier, par exemple pour un design pattern quelconque, utilisez l’attribut `#[UseFactory()]` plutôt que la méthode `newFactory()` pour les lier aux modèles✨🚀
 
-```php
+```diff
 namespace App\CustomDirectory\Models;
 
 use Database\Factories\CustomDirectory\UserFactory;
