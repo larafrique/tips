@@ -113,3 +113,23 @@ class User extends Authenticatable
 }
 
 ```
+___
+
+
+### Simplifier les migrations avec `Schema::morphs`
+
+Générez automatiquement les deux colonnes nécessaires pour relier un modèle à plusieurs autres modèles dans une relation polymorphique grâce à la méthode `morphs`
+
+```diff
+Schema::create('images', function (Blueprint $table) {
+	$table->id();
+	$table->string('path');
+-	$table->string('imageable_type');
+-	$table->unsignedBigInteger('imageable_id');
++	$table->morphs('imageable');
+})
+```
+___
+
+
+

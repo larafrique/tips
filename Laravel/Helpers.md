@@ -163,3 +163,64 @@ ___
 
 
 
+### La jointure avancée avec `join()`
+
+Saviez-vous que la méthode `join()` sur les collections fait bien plus qu’un simple `implode() ?`
+Il est possible de définir un séparateur spécifique pour le dernier élément 🚀🚀🚀
+
+```php
+// Ceci fait un `implode()` classique ? ? ?
+
+collect (['larafrique', 'user_1', 'user_2'])
+    ->join(', '); // larafrique, user_1, user_2
+
+// Astuce : vous pouvez définir un séparateur
+// spécifique pour le dernier élément 🚀🚀🚀
+collect (['larafrique', 'user_1', 'user_2'])
+    ->join(', ', ', et '); // larafrique, user_1, et user_2 ✅
+
+collect(['larafrique', 'user_1', 'user_2'])
+    ->join(', ', ' ou '); // larafrique, user_1 ou user_2 ✅
+```
+___
+
+
+
+### `dd` sur les collections
+
+```php
+use App\Models\User;
+
+// Approche classique 😊😊😊
+$users = User::all();
+dd($users);
+
+// meilleure approche ✅✅✅
+User::all()->dd();
+```
+___
+
+
+
+### Prévisualiser des mails facilement.
+
+Laravel permet de prévisualiser n'importe quel e-mail directement dans le navigateur, sans l'envoyer réellement.🚀🚀🚀
+Il suffit de retourner une instance d'un Mailable depuis une route, comme ceci :
+
+```php
+use App\Models\User;
+use App\Mail\WelcomeUserMail;
+
+Route::get('/welcome-mail-preview', function () {
+
+    $user = User::first();
+
+    return new WelcomeUserMail($user);
+});
+```
+
+![Prévisualation du mail](../images/laravel/mail-preview.png)
+___
+
+
+

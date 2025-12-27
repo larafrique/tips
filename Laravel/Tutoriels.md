@@ -126,3 +126,53 @@ ___
 
 
 
+### Caster un attribut en `Enum`
+
+Grâce aux backed enums de PHP et au casting de Laravel, tu peux transformer une valeur d’attribut en instance d’enum. Cela te permet d’ajouter des méthodes comme `label()` ou `description()` accessibles depuis ton modèle.✨🚀
+
+```php
+enum ReportReason: string
+{
+    case InappropriateContent = 'inappropriate content';
+    case Spam = 'span';
+    case Harassment = 'harassment';
+    case Misinformation = 'misinformation';
+
+    public function label(): string
+    {
+        return match ($this) {
+            self::Inappropriatecontent => 'Contenu inapproprié',
+            self::Spam => 'span',
+            self::Harassment => 'Harcélement',
+            self::Misinformation => 'Désinformation'
+        }
+    }
+
+    public function description(): string
+    {
+        return match ($this) {
+            self::InappropriateContent => 'Ce commentaire contient du contenu inapproprié',
+            self::Spam => 'Ce commentaire est considéré comme du spam.',
+            self::Harassment => 'Ce commentaire constitue du harcilement.',
+            self::Misinformation => 'Ce commentaire contient de la désinformation.',
+        }
+    }
+}
+
+#___________________________________________________________________________________
+
+class Report extends Model
+{
+    protected function casts()
+    {
+        return [
+            'reason' => ReportReason::class, // Caster l'attribut ici
+        ]
+    }
+}
+
+$report = Report::first(); // ['id' => 1, 'reason’ => 'misinformation']
+
+$report->reason->label(); // Désinformation
+$report->reason->description(); // Ce commentaire contient de la désinformation.
+```

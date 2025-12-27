@@ -24,8 +24,8 @@ if($user) {
 // Méthode 2 🚀🚀🚀
 
 $user = User::updateOrCreate(
-    ['email' => 'johndoe@example.com'],
-    ['last_login_at' => now()]
+    [`email` => `johndoe@example.com`],
+    [`last_login_at` => now()]
 );
 ```
 ___
@@ -35,15 +35,15 @@ ___
 
 ### Utilisation de la méthode `firstWhere`
 
-raccourci pour User::where(...)->first(). Il renvoie le premier modèle correspondant ou null si aucun enregistrement n'est trouvé. À privilégier quand on a simplement besoin du premier résultat sans construire manuellement la requête.
+raccourci pour User::where(...)->first(). Il renvoie le premier modèle correspondant ou null si aucun enregistrement n`est trouvé. À privilégier quand on a simplement besoin du premier résultat sans construire manuellement la requête.
 
 ```php
 // Méthode 1 🫠🫠🫠
-$user = User::where('email', 'john@doe.test')->first();
+$user = User::where(`email`, `john@doe.test`)->first();
 
 
 // Méthode 2 🚀🚀🚀
-$user = User::firstWhere('email', 'john@doe.test');
+$user = User::firstWhere(`email`, `john@doe.test`);
 ```
 ___
 
@@ -56,9 +56,9 @@ Obtenez des résultats compris entre deux dates avec `whereBetween`
 ```php
 use App\Models\Post;
 
-Post::whereBetween('created_at', [
-    $request->date('from') ?? '2024-01-01',
-    $request->date('to') ?? now(),
+Post::whereBetween(`created_at`, [
+    $request->date(`from`) ?? `2024-01-01`,
+    $request->date(`to`) ?? now(),
 ])
 ->get();
 ```
@@ -68,7 +68,7 @@ La requéte en sortie :
 SELECT *
 FROM `posts`
 WHERE
-    `created_at` BETWEEN '2024-01-01' AND '2025-09-10 18:03:12'
+    `created_at` BETWEEN `2024-01-01` AND `2025-09-10 18:03:12`
 ```
 ___
 
@@ -80,17 +80,17 @@ Laravel transforme automatiquement tout ce qui suit "where" dans le nom de la fo
 ```php
 use App\Models\User;
 
-User::where('nom_du_champ_en_pascal_case', 'valeur')->first();
-User::whereNomDuChampEnPascalCase('valeur')->first(); // Raccourci 🚀
-// SQL : SELECT * FROM `users` WHERE `nom_du_champ_en_pascal_case` = 'valeur' LIMIT 1;
+User::where(`nom_du_champ_en_pascal_case`, `valeur`)->first();
+User::whereNomDuChampEnPascalCase(`valeur`)->first(); // Raccourci 🚀
+// SQL : SELECT * FROM `users` WHERE `nom_du_champ_en_pascal_case` = `valeur` LIMIT 1;
 
-User::where('full_name', 'larafrique cool')->first();
-User::whereFullName('larafrique cool')->first(); // Raccourci 🚀
-// SQL : SELECT * FROM `users` WHERE `full_name` = 'larafrique cool' LIMIT 1;
+User::where(`full_name`, `larafrique cool`)->first();
+User::whereFullName(`larafrique cool`)->first(); // Raccourci 🚀
+// SQL : SELECT * FROM `users` WHERE `full_name` = `larafrique cool` LIMIT 1;
 
-User::where('email', 'hello@larafrique.com')->first();
-User::whereEmail('hello@larafrique.com')->first(); // Raccourci 🚀
-// SQL : SELECT * FROM `users` WHERE `email` = 'hello@larafrique.com' LIMIT 1;
+User::where(`email`, `hello@larafrique.com`)->first();
+User::whereEmail(`hello@larafrique.com`)->first(); // Raccourci 🚀
+// SQL : SELECT * FROM `users` WHERE `email` = `hello@larafrique.com` LIMIT 1;
 ```
 ___
 
@@ -103,19 +103,19 @@ Vous pouvez voir la vraie requête SQL générée par `Eloquent` qui sera exécu
 ```php
 // Méthode 1 👎👎👎
 
-$sql = User::where('active', true) ->toRawSql();
+$sql = User::where(`active`, true) ->toRawSql();
 dd ($sql);
 // affiche : "SELECT * FROM `users` WHERE `active` = 1"
 
 
 // Méthode 2 🚀🚀🚀
 
-// utilise `dd()` et stoppe 1l'exécution du code
-User::where('active', true)->ddRawSql();
+// utilise `dd()` et stoppe 1l`exécution du code
+User::where(`active`, true)->ddRawSql();
 // affiche : "SELECT * FROM `users` WHERE `active` = 1"
 
-// utilise `dump()` et continue 1'exécution du code
-User::where('active', true)->dumpRawSql();
+// utilise `dump()` et continue 1`exécution du code
+User::where(`active`, true)->dumpRawSql();
 // affiche : "SELECT * FROM `users` WHERE `active` = 1"
 ```
 ___
@@ -124,19 +124,40 @@ ___
 
 ### La méthode `WhereAny`
 
-Utiliser la méthode `whereAny` au lieu d'utiliser des méthodes `orWhere` à la suite des autres.
+Utiliser la méthode `whereAny` au lieu d`utiliser des méthodes `orWhere` à la suite des autres.
 
 ```php
 // Méthode 1 : Utiliser `orWhere()` 🫠🫠🫠
-User::where('name', 'LIKE', "%$search%")
-    ->orWhere('email', 'LIKE', "%$search%")
-    ->orWhere('phonenumber', 'LIKE', "%$search%")
+User::where(`name`, `LIKE`, "%$search%")
+    ->orWhere(`email`, `LIKE`, "%$search%")
+    ->orWhere(`phonenumber`, `LIKE`, "%$search%")
     ->get();
 
 
 // Méthode 2 : Utiliser `whereAny()` 🚀🚀🚀
-User::whereAny(['name', 'email', 'phonenumber'], 'LIKE', "%$search%")
+User::whereAny([`name`, `email`, `phonenumber`], `LIKE`, "%$search%")
     ->get();
+```
+___
+
+
+
+### `where` dynamiques
+
+Vous pouvez écrire des `where` dynamiques sur des noms des champs de la table 🫠🫠🫠
+
+```php
+User::whereNameAndEmail('laf', 'info@laf.com')->first();
+// SELECT * FROM `users` WHERE `name` = `laf` AND `email` = `infoalaf.com`
+
+User::whereNameOrEmail('laf', 'info@laf.com')->first();
+// SELECT * FROM `users` WHERE `name` = `lar` OR `email` = `infoalaf.com`
+
+User::whereIsAdmin(true)->first();
+// SELECT * FROM `users` WHERE `is_admin` = 1
+
+User::whereIsAdminAndEmail(true, 'infoa@laf.com') ->first();
+// SELECT * FROM `users` WHERE `is_admin` = 1 AND `email` = `info@laf.com`
 ```
 ___
 
