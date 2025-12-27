@@ -20,3 +20,63 @@ Vous pouvez plus facilement  passer un `props` à un composant blade avec cette 
 <x-user-card :$user />
 <x-toast :$message />
 ```
+___
+
+
+
+### Utiliser `@forelse`
+
+Utilisez `@forelse` au lieu de `@if` + `@foreach` . Moins de code, plus de clarté ✨
+
+```blade
+{{-- Au lieu de procéder ainsi 🫠🫠🫠 --}}
+@if ($user->posts->count())
+    @foreach ($user->posts as $post)
+        <li>{{ $post->title }}</li>
+    @endforeach
+@else
+    <p>Aucun article disponible</p>
+@endif
+
+{{-- Vous pouvez procéder de cette maniére ✅🚀🚀 --}}
+@forelse ($user->posts as $post)
+    <li>{{ $post->title }}</li>
+@empty
+    <p>Aucun article disponible</p>
+@endforelse
+```
+___
+
+
+
+
+### Utilisation de la variable `$loop` dans une boucle `foreach`
+
+Avec `$loop`, une boucle foreach ne se contente pas de parcourir les données : elle vous dit aussi si vous êtes au début, à la fin ou sur une itération paire/impaire et plus...🚀✨
+
+```blade
+@foreach ($users as $user)
+    {{ $loop->index }} Renvoie l'index courant (commence à 0)
+    {{ $loop->iteration }} Renvoie le numéro de l'itération (commence à 1)
+
+    @if ($loop->first)
+        C'est la premiére itération.
+    @endif
+
+    @if ($loop->last)
+        C'est la derniére itération.
+    @endif
+
+    @if ($loop->even)
+        C'est une itération paire.
+    @endif
+
+    @if ($loop->odd)
+        C'est une itération impaire.
+    @endif
+
+    @if ($loop->remaining > 1)
+        L'attribut "remaining" indique le nombre d'itérations restantes aprés celle-ci.
+    @endif
+@endforeach
+```

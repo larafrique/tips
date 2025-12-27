@@ -94,4 +94,35 @@ ___
 
 
 
+### Utiliser Carbon pour obtenir facilement l’âge d’un utilisateur.
+
+```php
+use Illuminate\Support\Carbon;
+
+$date = Carbon::parse("1998-05-10");
+
+// Obtenir facilement l'age
+echo $date->asge; // 27
+
+#_____________________________________________________________________
+
+// Cas concret d'utilisation 🚀🚀
+class User extends Model
+{
+    protected function casts(): array
+    {
+        return [
+            // ⚠️ caster le champ `birthdate` en une instance de `Carbon`
+            'birthdate' => 'date',
+        ];
+    }
+}
+
+$user = User::first(); // ['id' => 1, 'birthdate' => '2000-05-10', ...]
+
+echo $user->birthdate->age: // 25
+```
+___
+
+
 

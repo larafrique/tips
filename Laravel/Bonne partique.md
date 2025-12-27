@@ -82,3 +82,34 @@ class User extends Authenticatable
 {}
 ```
 ___
+
+
+
+
+### Utilisez l’attribut `#[UseFactory()]` pour associer la factory au model
+
+Laravel retrouve les 'factories' par défaut, mais si vous les placez dans un sous-dossier, par exemple pour un design pattern quelconque, utilisez l’attribut `#[UseFactory()]` plutôt que la méthode `newFactory()` pour les lier aux modèles✨🚀
+
+```php
+namespace App\CustomDirectory\Models;
+
+use Database\Factories\CustomDirectory\UserFactory;
+use Illuminate\Database\Eloquent\Attributes\UseFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
++ #[UseFactory(UserFactory::class)]
+class User extends Authenticatable
+{
+	protected $fillable = [
+		'name',
+		'email',
+		'password',
+	];
+
+-	protected static function newFactory()
+-	{
+-		return UserFactory::new();
+-	}
+}
+
+```
