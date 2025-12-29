@@ -43,7 +43,7 @@ Sur les collections, on peut utiliser la méthode `filter` sans rien en paramèt
 
 // Méthode 🫠🫠🫠
 collect(['', null, false, 1, 2, 3, 4])
-    ->filter(fn ($value) => Svalue)
+    ->filter(fn ($value) => $value)
     ->values(); // [1, 2, 3, 4]
 
 // Méthode 2, Utiliser seulement `filter()` 🚀🚀🚀
@@ -71,7 +71,7 @@ $users = Collection::times(5, function (int $number): array {
     return [
         'id' => $number,
         'name' => "User {$number}"
-    ],
+    ];
 });
 // [
 //     ["id" => 1, "name" => "User 1"],

@@ -38,7 +38,7 @@ Utilisez `@forelse` au lieu de `@if` + `@foreach` . Moins de code, plus de clart
     <p>Aucun article disponible</p>
 @endif
 
-{{-- Vous pouvez procéder de cette maniére ✅🚀🚀 --}}
+{{-- Vous pouvez procéder de cette manière ✅🚀🚀 --}}
 @forelse ($user->posts as $post)
     <li>{{ $post->title }}</li>
 @empty
@@ -60,11 +60,11 @@ Avec `$loop`, une boucle foreach ne se contente pas de parcourir les données : 
     {{ $loop->iteration }} Renvoie le numéro de l'itération (commence à 1)
 
     @if ($loop->first)
-        C'est la premiére itération.
+        C'est la première itération.
     @endif
 
     @if ($loop->last)
-        C'est la derniére itération.
+        C'est la dernière itération.
     @endif
 
     @if ($loop->even)
@@ -76,7 +76,7 @@ Avec `$loop`, une boucle foreach ne se contente pas de parcourir les données : 
     @endif
 
     @if ($loop->remaining > 1)
-        L'attribut "remaining" indique le nombre d'itérations restantes aprés celle-ci.
+        L'attribut "remaining" indique le nombre d'itérations restantes après celle-ci.
     @endif
 @endforeach
 ```
@@ -94,7 +94,7 @@ Au lieu de multiplier les `use` en PHP dans vos fichiers Blade, Vous pouvez fair
     use \App\Enums\NotificationTypeEnum as NotificationType;
 @endphp
 
-{{-- Vous pouvez procéder de cette maniére 🔥✨✅ --}}
+{{-- Vous pouvez procéder de cette manière 🔥✨✅ --}}
 @use('\App\Enums\TaskResult')
 @use('\App\Enums\NotificationTypeEnum', 'NotificationType')
 ```

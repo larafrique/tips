@@ -7,7 +7,7 @@ $utilisateurs = [
     [
         'id' => 1,
         'nom' => 'Alice'
-    ]
+    ],
     [
         'id' => 2,
         'nom' => 'Bob'
@@ -40,13 +40,13 @@ $user = [
 $name = $user['name'];
 $email = $user['email'];
 
-echo "Nom : $name, Email : Semail";
+echo "Nom : $name, Email : $email";
 // Nom : larafrique, Email : contact@larafrique.com
 
 // Utiliser la déstructuration 🚀🚀🚀
 ['name' => $name, 'email' => $email] = $user;
 
-echo "Nom : $name, Email : Semail";
+echo "Nom : $name, Email : $email";
 // Nom : larafrique, Email : contacta@larafrique.com
 ```
 ___
@@ -69,7 +69,7 @@ ___
 
 
 
-### Fusion de deux ou plusieurs tableau
+### Fusion de deux ou plusieurs tableaux
 
 ```php
 $array1 = ['Laravel', 'Symfony'];

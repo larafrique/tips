@@ -3,7 +3,7 @@
 
 ### Eager loading avec `with()`
 
-Quand vous préchargez une relation, vous pouvez préciser les champs dont vous avez besoin pour un peu plus d'optimisation avec cette synthaxe :
+Quand vous préchargez une relation, vous pouvez préciser les champs dont vous avez besoin pour un peu plus d'optimisation avec cette syntaxe :
 
 ```php
 // Méthode plus complexe ❌❌❌
@@ -15,7 +15,7 @@ Comment::with([
 ])->get();
 
 // Méthode simple ✅✅✅
-// Il faut nécéssairement préciser l'ID pour que Eloquent fasse la liason avec `user_id` de la table `comment`
+// Il faut nécessairement préciser l'ID pour que Eloquent fasse la liaison avec `user_id` de la table `comment`
 
 Comment::with('user:id,name,avatar')->get();
 ```

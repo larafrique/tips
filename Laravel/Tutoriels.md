@@ -3,15 +3,15 @@
 
 ### Automatiser la gestion du slug
 
-Avec Laravel, on peut écouter les évènements émis  par un model au cours de son cycle de vie pour automatiser certaines opérations.
-Dans cet exemple, on vous montre comment automatiser la gestion du `slug` sur un model et réutiliser la logique 🚀🚀🚀
+Avec Laravel, on peut écouter les événements émis par un modèle au cours de son cycle de vie pour automatiser certaines opérations.
+Dans cet exemple, on vous montre comment automatiser la gestion du `slug` sur un modèle et réutiliser la logique 🚀🚀🚀
 
 ```php
-use Illuminate\Support\str;
+use Illuminate\Support\Str;
 
 trait HasSlug
 {
-    protected static function bootHasslug()
+    protected static function bootHasSlug()
     {
         $separator = $this->slugSeparator();
         $source = $this->{$this->slugSource()};
@@ -31,7 +31,7 @@ trait HasSlug
         return Str::slug($slug, $separator);
     }
 
-    public function slugSeparator (): string
+    public function slugSeparator(): string
     {
         return '-';
     }
@@ -55,7 +55,7 @@ class Article extends Model
 }
 
 $post = Post::create(['title' => 'Mon titre super cool', 'content' => 'Mon contenu']);
-$pots->slug // mon-titre-super-cool
+$post->slug; // mon-titre-super-cool
 ```
 ___
 
@@ -101,8 +101,8 @@ use Illuminate\Support\Carbon;
 
 $date = Carbon::parse("1998-05-10");
 
-// Obtenir facilement l'age
-echo $date->asge; // 27
+// Obtenir facilement l'âge
+echo $date->age; // 27
 
 #_____________________________________________________________________
 
@@ -120,7 +120,7 @@ class User extends Model
 
 $user = User::first(); // ['id' => 1, 'birthdate' => '2000-05-10', ...]
 
-echo $user->birthdate->age: // 25
+echo $user->birthdate->age; // 25
 ```
 ___
 
@@ -134,28 +134,28 @@ Grâce aux backed enums de PHP et au casting de Laravel, tu peux transformer une
 enum ReportReason: string
 {
     case InappropriateContent = 'inappropriate content';
-    case Spam = 'span';
+    case Spam = 'spam';
     case Harassment = 'harassment';
     case Misinformation = 'misinformation';
 
     public function label(): string
     {
         return match ($this) {
-            self::Inappropriatecontent => 'Contenu inapproprié',
-            self::Spam => 'span',
-            self::Harassment => 'Harcélement',
-            self::Misinformation => 'Désinformation'
-        }
+            self::InappropriateContent => 'Contenu inapproprié',
+            self::Spam => 'Spam',
+            self::Harassment => 'Harcèlement',
+            self::Misinformation => 'Désinformation',
+        };
     }
 
     public function description(): string
     {
         return match ($this) {
-            self::InappropriateContent => 'Ce commentaire contient du contenu inapproprié',
+            self::InappropriateContent => 'Ce commentaire contient du contenu inapproprié.',
             self::Spam => 'Ce commentaire est considéré comme du spam.',
-            self::Harassment => 'Ce commentaire constitue du harcilement.',
+            self::Harassment => 'Ce commentaire constitue du harcèlement.',
             self::Misinformation => 'Ce commentaire contient de la désinformation.',
-        }
+        };
     }
 }
 
@@ -167,7 +167,7 @@ class Report extends Model
     {
         return [
             'reason' => ReportReason::class, // Caster l'attribut ici
-        ]
+        ];
     }
 }
 
@@ -222,7 +222,7 @@ class User extends Authenticatable implements MustVerifyEmail
 ```php
 // Notre classe étend `VerifyEmail`.
 // Pour mettre la notification en file d'attente (recommandé ✨),
-// on implémente 1’interface `ShouldQueue` et on utilise le trait `Queueable`
+// on implémente l'interface `ShouldQueue` et on utilise le trait `Queueable`
 class CustomVerifyEmail extends VerifyEmail implements ShouldQueue
 {
     use Queueable; // Optionnel, mais requis si on implémente `ShouldQueue`
@@ -246,7 +246,7 @@ class CustomVerifyEmail extends VerifyEmail implements ShouldQueue
 <x-layouts.mail-layout
     :buttons="[
         [
-            'url' => $verificationurl,
+            'url' => $verificationUrl,
             'label' => 'Vérifier mon adresse e-mail',
             'icon' => 'heroicon-s-check-circle',
         ]

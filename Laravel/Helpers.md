@@ -22,16 +22,16 @@ ___
 ✨Astuce : générer facilement des numéros de téléphone aléatoires avec `Faker` grâce au helper `fake()` de Laravel.
 
 ```php
-echo fake ()->>numerify ("###-###-###") ;
+echo fake()->numerify("###-###-###");
 // 995-399-340
 
-echo fake()->>numerify ("### ### ###");
+echo fake()->numerify("### ### ###");
 // 918 201 142
 
-echo fake()->numerify ("+243 ### ### ###");
+echo fake()->numerify("+243 ### ### ###");
 // +243 489 525 424
 
-echo fake()->numerify ("+243 9## ### ###");
+echo fake()->numerify("+243 9## ### ###");
 // +243 917 704 960
 ```
 ___
@@ -44,7 +44,7 @@ Découvrez la méthode `Number::abbreviate()` qui formate un nombre en version a
 
 ```php
 Number::abbreviate(950);
-// "950" (pas assez grand pour étre abrésgé)
+// "950" (pas assez grand pour être abrégé)
 
 Number::abbreviate(1_200);
 // "1.2K"
@@ -55,7 +55,7 @@ Number::abbreviate(15_000);
 Number::abbreviate(2_530_000);
 // "2.53M"
 
-Number::abbreviate(7_800_000_000) ;
+Number::abbreviate(7_800_000_000);
 // "7.8B"
 
 Number::abbreviate(1_000_000_000_000);
@@ -168,15 +168,15 @@ Saviez-vous que la méthode `join()` sur les collections fait bien plus qu’un 
 Il est possible de définir un séparateur spécifique pour le dernier élément 🚀🚀🚀
 
 ```php
-// Ceci fait un `implode()` classique ? ? ?
+// Ceci fait un `implode()` classique 🙂🙂🙂
 
-collect (['larafrique', 'user_1', 'user_2'])
+collect(['larafrique', 'user_1', 'user_2'])
     ->join(', '); // larafrique, user_1, user_2
 
 // Astuce : vous pouvez définir un séparateur
 // spécifique pour le dernier élément 🚀🚀🚀
-collect (['larafrique', 'user_1', 'user_2'])
-    ->join(', ', ', et '); // larafrique, user_1, et user_2 ✅
+collect(['larafrique', 'user_1', 'user_2'])
+    ->join(', ', ' et '); // larafrique, user_1 et user_2 ✅
 
 collect(['larafrique', 'user_1', 'user_2'])
     ->join(', ', ' ou '); // larafrique, user_1 ou user_2 ✅
@@ -231,7 +231,7 @@ Voici des méthodes super utiles et élégantes que vous pouvez utiliser avec le
 today()->startOfWeek(); // Lundi de cette semaine
 today()->endOfWeek(); // Dimanche
 today()->startOfMonth(); // 1er du mois
-today()->end0fMonth(); // 31/30/28 selon le mois
+today()->endOfMonth(); // 31/30/28 selon le mois
 
 today()->isMonday(); // true/false
 today()->isWeekend(); // true/false
@@ -248,7 +248,7 @@ Str::isJson(), pratique pour vérifier rapidement si une chaîne est un JSON val
 ```php
 use Illuminate\Support\Str;
 
-Str:isJson('[1, 2, 3]');
+Str::isJson('[1, 2, 3]');
 // true
 
 Str::isJson('{"name": "Alice", "role": "admin"}')
