@@ -1,5 +1,5 @@
-## Eloquent
-___
+# Eloquent
+
 
 ### Economiser des lignes de code avec `updateOrCreate`
 
@@ -163,3 +163,16 @@ ___
 
 
 
+### Requêtes Eloquent plus élégantes
+
+Saviez-vous que vous pouvez rendre vos requêtes Eloquent plus élégantes ?
+
+```php
+// Au lieu d’écrire 👇🏼
+User::popular()->orWhere(function (Builder $query) {
+    $query->active();
+})->get();
+
+// vous pouvez simplement faire 👇🏼💡✨✅ 
+User ::popular()->orWhere->active()->get();
+```

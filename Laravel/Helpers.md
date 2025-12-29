@@ -1,5 +1,4 @@
-## Helpers
-___
+# Helpers
 
 
 ### Un peu d'optimisation avec `abort_if`
@@ -186,22 +185,6 @@ ___
 
 
 
-### `dd` sur les collections
-
-```php
-use App\Models\User;
-
-// Approche classique 😊😊😊
-$users = User::all();
-dd($users);
-
-// meilleure approche ✅✅✅
-User::all()->dd();
-```
-___
-
-
-
 ### Prévisualiser des mails facilement.
 
 Laravel permet de prévisualiser n'importe quel e-mail directement dans le navigateur, sans l'envoyer réellement.🚀🚀🚀
@@ -220,6 +203,66 @@ Route::get('/welcome-mail-preview', function () {
 ```
 
 ![Prévisualation du mail](../images/laravel/mail-preview.png)
+___
+
+
+
+### Afficher la taille (d'un fichier)... en toute lettre
+
+```php
+use Illuminate\Support\Number;
+
+$size = Number::fileSize(1024); // 1 KB
+
+$size = Number::fileSize(1024 * 1024); // 1 MB
+
+$size = Number::fileSize(1024, precision: 2); // 1.00 KB
+
+```
+___
+
+
+
+### Manipuler facilement les dates avec le helper `today()`
+
+Voici des méthodes super utiles et élégantes que vous pouvez utiliser avec le helper `today()` pour manipuler facilement les dates à partir de la date actuelle 💫
+
+```php
+today()->startOfWeek(); // Lundi de cette semaine
+today()->endOfWeek(); // Dimanche
+today()->startOfMonth(); // 1er du mois
+today()->end0fMonth(); // 31/30/28 selon le mois
+
+today()->isMonday(); // true/false
+today()->isWeekend(); // true/false
+today()->isLastOfMonth(); // true/false
+```
+___
+
+
+
+### Vérifier rapidement si une chaîne est un JSON valide
+
+Str::isJson(), pratique pour vérifier rapidement si une chaîne est un JSON valide avant de la décoder ou de l'utiliser dans la logique. Et lorsque tu passeras à PHP 8.3, Laravel utilisera automatiquement la fonction native "json_validate()" sous le capot.🚀
+
+```php
+use Illuminate\Support\Str;
+
+Str:isJson('[1, 2, 3]');
+// true
+
+Str::isJson('{"name": "Alice", "role": "admin"}')
+// true
+
+Str::isJson('{name: "Alice", role: "admin"}');
+// false
+
+Str::isJson('Hello Laravel');
+// false
+
+Str::isJson('null');
+// true
+```
 ___
 
 

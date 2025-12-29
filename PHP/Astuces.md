@@ -65,3 +65,55 @@ if(isset($var1, $var2, $var3)) {
     // votre code
 }
 ```
+___
+
+
+
+### Fusion de deux ou plusieurs tableau
+
+```php
+$array1 = ['Laravel', 'Symfony'];
+$array2 = ['Vue.js', 'React'];
+
+// Avant 🫠🫠
+$merged = array_merge($array1, $array2);
+// ['Laravel', 'Symfony', 'Vue.js', 'React']
+
+
+// Maintenant 🚀🚀🚀
+$merged = [...$array1, ...$array2];
+// ['Laravel', 'Symfony', 'Vue.js', 'React'] ✅✅✅
+```
+___
+
+
+
+### Filtrer facilement et ne garder que les valeurs "Truthy"
+
+On peut utiliser la fonction `array_filter` sans rien passer en deuxième paramètre pour ne garder que les valeurs implicitement égales à `true`
+
+```php
+$users = ['Larafrique', '', 'John Doe', null];
+
+// Avant 🫠🫠
+$clean = array_filter($users, fn ($user) => !!$user);
+
+// Maintenant 🚀🚀🚀
+$clean = array_filter($users);
+// ["Larafrique", "John Doe"]
+```
+
+
+
+### Transformer facilement en passant le nom de la fonction avec `array_map`
+
+```php
+$users = ['Larafrique', 'John Doe', 'Jane Doe'];
+
+// Avant 🫠🫠
+$clean = array_map(fn (string $user) => strtoupper($user), $users);
+
+// Maintenant 🚀🚀🚀
+$clean = array_map('strtoupper', $users);
+// ["LARAFRIQUE", "JOHN DOE", "JANE DOE"]
+```

@@ -1,5 +1,5 @@
-## Blade
-___
+# Blade
+
 
 ### Passer facilement des props à un composant
 
@@ -80,3 +80,25 @@ Avec `$loop`, une boucle foreach ne se contente pas de parcourir les données : 
     @endif
 @endforeach
 ```
+
+
+
+### Importer une classe avec `@use`
+
+Au lieu de multiplier les `use` en PHP dans vos fichiers Blade, Vous pouvez faire plus simple et lisible avec `@use`.
+
+```blade
+{{-- Au lieu de procéder ainsi 🫠🥱🫠 --}}
+@php
+    use \App\Enums\TaskResult;
+    use \App\Enums\NotificationTypeEnum as NotificationType;
+@endphp
+
+{{-- Vous pouvez procéder de cette maniére 🔥✨✅ --}}
+@use('\App\Enums\TaskResult')
+@use('\App\Enums\NotificationTypeEnum', 'NotificationType')
+```
+___
+
+
+

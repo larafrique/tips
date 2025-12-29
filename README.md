@@ -7,18 +7,19 @@ Vous pouvez nous retrouver sur notre site officiel [Larafrique](https://larafriq
 
 #### [Laravel](./Laravel)
 
-- [Bonnes pratiques](./Laravel/Bonne%20partique.md)
-- [Eloquent](./Laravel/Eloquent.md)
-- [Collections](./Laravel/Collections.md)
-- [Helpers](./Laravel/Helpers.md)
-- [Blade](./Laravel/Blade.md)
-- [Tutoriels](./Laravel/Tutoriels.md)
-- [Commandes](./Laravel/Commandes.md)
+- [🛠️ Bonnes pratiques](./Laravel/Bonne%20partique.md)
+- [🗃️ Eloquent](./Laravel/Eloquent.md)
+- [📦 Collections](./Laravel/Collections.md)
+- [🧰 Helpers](./Laravel/Helpers.md)
+- [📝 Blade](./Laravel/Blade.md)
+- [🎓 Tutoriels](./Laravel/Tutoriels.md)
+- [⚙️ Commandes](./Laravel/Commandes.md)
+- [✅ Validation](./Laravel/Validation.md)
 
 #### [PHP](./PHP)
 
-- [Astuces](./PHP/Astuces.md)
+- [💡 Astuces](./PHP/Astuces.md)
 
 
 #### [CSS](./CSS)
-- [Astuces](./CSS/Astuces.md)
+- [💡 Astuces](./CSS/Astuces.md)

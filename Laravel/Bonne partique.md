@@ -1,5 +1,5 @@
-## Bonnes pratiques
-___
+# Bonnes pratiques
+
 
 ### Eager loading avec `with()`
 
@@ -128,6 +128,80 @@ Schema::create('images', function (Blueprint $table) {
 -	$table->unsignedBigInteger('imageable_id');
 +	$table->morphs('imageable');
 })
+```
+___
+
+
+
+### Nettoyer les relations d'un model dans un job avec `#[WithoutRelations]`
+
+Dans une job Laravel, pas besoin d’embarquer toutes les relations du modèle (parfois lourdes et inutiles).
+`#[WithoutRelations]` nettoie tout avant la sérialisation. 
+Résultat : Payload léger, queue plus rapide ⚡️
+
+```diff
++ use Illuminate\Queue\Attributes\WithoutRelations;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Queue\Queueable;
+
+class ProcessPodcast implements ShouldQueue
+{
+	use Queueable;
+
+	public function __construct(
++		#[WithoutRelations]
+		public Podcast $podcast
+	) {
+	}
+}
+```
+___
+
+
+
+### Simplifiez vos routes Laravel avec `Route::view()`
+
+Au lieu de créer une closure juste pour retourner une vue, utilisez Route::view().
+Plus propre, plus court, plus lisible. ✨
+
+```php
+use Illuminate\Support\Facades\Route;
+
+// Au lieu de faire ça 🥱🥱🥱
+Route::get('/welcome', function () {
+	return view('welcome', ['foo' => 'bar']);
+});
+
+// Vous pouvez faire ça 😎😎😎
+Route::view('/welcome', 'welcome', ['foo' => 'bar']);
+```
+___
+
+
+
+### Injecter des valeurs direct dans ton constructeur avec l'attribut `#[Config]`
+
+Tu as sûrement déjà dû remplir des propriétés avec des valeurs de config. Avec Laravel 11+, c’est beaucoup plus simple : les attributs injectent les valeurs direct dans ton constructeur, sans code inutile🚀
+
+```diff
+namespace App\Services\Github;
+
++ use Illuminate\Container\Attributes\Config;
+
+class GitHubClient
+{
+-	private string $apiKey;
+
+	public function __construct(
++		#[Config('services.github.api_key')]
++		private readonly string $apiKey,
+	)
+	{
+-		$this->apiKey = config()->string('services.github.api_key');
+	}
+
+	// ...
+}
 ```
 ___
 
