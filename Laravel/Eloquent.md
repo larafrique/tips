@@ -176,3 +176,27 @@ User::popular()->orWhere(function (Builder $query) {
 // vous pouvez simplement faire 👇🏼💡✨✅ 
 User ::popular()->orWhere->active()->get();
 ```
+___
+
+
+
+### Scopes modernes avec les attributs PHP.
+
+Il est possible de déclarer un scope Eloquent sans respecter le préfixe `scope` grâce à l’attribut `#[Scope]`.
+Le nom de la méthode devient directement le nom du scope, ce qui rend le code plus lisible. 🚀🚀
+
+```diff
++ use Illuminate\Database\Eloquent\Attributes\Scope;
+
+class Post extends Model
+{
++    #[Scope]
+-    public function scopeOnline(Builder $query) {
++    public function online(Builder $query) {
+        $query->where('online', true);
+    }
+}
+```
+___
+
+
