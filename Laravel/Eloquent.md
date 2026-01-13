@@ -202,7 +202,7 @@ ___
 
 ### Les global scopes directement via des attributs
 
-Avec `#[ScopedBy]`, plus besoin de surcharger `booted()` ni d’appeler `addGlobalScope()` manuellement. Le scope est automatiquement appliqué au modèle, de façon plus lisible, déclarative et maintenable.
+Avec `#[ScopedBy]`, plus besoin de surcharger `booted()` ni d’appeler `addGlobalScope()` manuellement. Le scope est automatiquement appliqué au modèle, de façon plus lisible, déclarative et maintenable. 🚀
 
 ```diff
 use App\Models\Scopes\ActiveScope;
