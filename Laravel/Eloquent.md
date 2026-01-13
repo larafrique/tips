@@ -200,3 +200,24 @@ class Post extends Model
 ___
 
 
+### Les global scopes directement via des attributs
+
+Avec `#[ScopedBy]`, plus besoin de surcharger `booted()` ni d’appeler `addGlobalScope()` manuellement. Le scope est automatiquement appliqué au modèle, de façon plus lisible, déclarative et maintenable.
+
+```diff
+use App\Models\Scopes\ActiveScope;
++ use Illuminate\Database\Eloquent\Attributes\ScopedBy;
+
++ #[ScopedBy(ActiveScope::class)]
+class User extends Authenticatable
+{
+-	protected static function booted()
+-	{
+-		static::addGlobalScope(new ActiveScope);
+-	}
+}
+```
+___
+
+
+
