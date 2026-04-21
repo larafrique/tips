@@ -221,3 +221,17 @@ ___
 
 
 
+### Optimisation de la requête avec la méthode `pluck`
+
+La méthode `pluck` est utilisée pour extraire une colonne spécifique d'une collection de modèles Eloquent.
+
+```php
+// Méthode 1 👎👎👎
+$users_emails = User::all()->pluck('email');
+// Récupère tous les utilisateurs en mémoire, puis extrait les emails ❌
+
+
+// Méthode 2 ✅✅✅
+$users_emails = User::pluck('email');
+// Exécute une requête SQL optimisée qui récupère uniquement la colonne `email`
+```
