@@ -267,3 +267,22 @@ ___
 
 
 
+### Affichez vos durées proprement avec `CarbonInterval`
+
+Marre d'afficher "125 secondes" à vos utilisateurs ? Transformez vos secondes en texte lisible en une seule ligne de code avec CarbonInterval.
+
+```php
+use Carbon\CarbonInterval;
+
+$duration = 185;
+
+echo CarbonInterval::seconds($duration)->cascade()->forHumans();
+// 185 secondes -> "3 minutes 5 secondes"
+
+echo CarbonInterval::seconds($duration)->cascade()->forHumans(['short' => true]);
+// En version courte : "3m 5s"
+```
+___
+
+
+
