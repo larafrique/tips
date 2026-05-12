@@ -1,9 +1,4 @@
 {
-  "name": "My Documentation",
-  "navigation": [
-    {
-      "group": "Getting Started",
-      "pages": ["introduction"]
-    }
-  ]
+  "name": "Larafrique",
+  "theme": "maple"
 }
