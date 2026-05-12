@@ -285,4 +285,3 @@ echo CarbonInterval::seconds($duration)->cascade()->forHumans(['short' => true])
 ___
 
 
-
