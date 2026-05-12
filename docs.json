@@ -1,1 +1,9 @@
-{}
+{
+  "name": "My Documentation",
+  "navigation": [
+    {
+      "group": "Getting Started",
+      "pages": ["introduction"]
+    }
+  ]
+}
